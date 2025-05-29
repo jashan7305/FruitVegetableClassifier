@@ -3,3 +3,4 @@ data
 .gitattributes
 notebooks/Sandbox.ipynb
 src/__pycache__
+models
