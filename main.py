@@ -10,8 +10,6 @@ from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene   
 )
 
-from src.Preprocessing import transform_image
-
 app = QApplication([])
 
 camera_window = cast(QMainWindow, uic.loadUi("ui\\camera.ui"))
