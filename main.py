@@ -1,18 +1,16 @@
 from typing import cast
 import sys
 from PIL import Image
-import matplotlib.pyplot as plt
 import cv2
-
-from torchvision import transforms
 
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, QRectF
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene,
-    QGraphicsPixmapItem,   
+    QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene   
 )
+
+from src.Preprocessing import transform_image
 
 app = QApplication([])
 
@@ -101,4 +99,3 @@ if __name__ == "__main__":
     exit_code = app.exec_()
     cap.release()
     sys.exit(exit_code)
-

@@ -2,3 +2,4 @@ venv
 data
 .gitattributes
 notebooks/Sandbox.ipynb
+src/__pycache__
