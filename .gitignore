@@ -4,3 +4,4 @@ data
 notebooks/Sandbox.ipynb
 src/__pycache__
 models
+__pycache__
