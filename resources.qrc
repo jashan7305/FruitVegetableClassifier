@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="image">
+    <file>ui/Image/form_bg.png</file>
+  </qresource>
+</RCC>
