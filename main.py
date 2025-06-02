@@ -8,7 +8,7 @@ from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, QRectF
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene,
-    QDialog, QMessageBox   
+    QDialog, QMessageBox, QLineEdit    
 )
 import resources
 
@@ -19,6 +19,8 @@ camera_window = cast(QMainWindow, uic.loadUi("ui\\Page\\Display_Screen.ui"))
 discard_btn = camera_window.findChild(QPushButton, "discardBtn")
 cap_btn = camera_window.findChild(QPushButton, "capBtn")
 upload_btn = camera_window.findChild(QPushButton, "uploadBtn")
+pred_btn = camera_window.findChild(QPushButton, "predBtn")
+file_path_line = camera_window.findChild(QLineEdit, "filePathLineEdit")
 camera_view = camera_window.findChild(QGraphicsView, "cameraView")
 
 scene = QGraphicsScene()
@@ -74,7 +76,7 @@ def upload():
     if not file.endswith(('.jpg', '.jpeg', '.png')):
         print("please select an image")
         return
-    print(file)
+    file_path_line.setText(file)
     img = Image.open(file).convert("RGB")
     pixmap = QPixmap(file)
     scene.clear()
