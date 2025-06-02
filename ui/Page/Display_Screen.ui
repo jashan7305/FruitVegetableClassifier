@@ -16,7 +16,6 @@
   <property name="styleSheet">
    <string notr="true">QMainWindow{
 border-image: url(:/image/ui/Image/form_bg.png);
-border: 1px solid black;
 }
 
 </string>
@@ -26,7 +25,7 @@ border: 1px solid black;
     <item row="0" column="0">
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
-       <string notr="true">border: 1px solid black;</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>

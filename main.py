@@ -7,12 +7,14 @@ from PyQt5 import uic
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, QRectF
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene   
+    QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene,
+    QDialog, QMessageBox   
 )
+import resources
 
 app = QApplication([])
 
-camera_window = cast(QMainWindow, uic.loadUi("ui\\camera.ui"))
+camera_window = cast(QMainWindow, uic.loadUi("ui\\Page\\Display_Screen.ui"))
 
 discard_btn = camera_window.findChild(QPushButton, "discardBtn")
 cap_btn = camera_window.findChild(QPushButton, "capBtn")
