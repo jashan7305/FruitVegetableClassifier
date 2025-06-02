@@ -34,7 +34,7 @@ border-image: url(:/image/ui/Image/form_bg.png);
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="1" column="0">
+       <item row="1" column="0" alignment="Qt::AlignBottom">
         <widget class="QFrame" name="frame_2">
          <property name="maximumSize">
           <size>
@@ -163,7 +163,11 @@ border-image: url(:/image/ui/Image/form_bg.png);
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <widget class="QGraphicsView" name="cameraView"/>
+           <widget class="QGraphicsView" name="cameraView">
+            <property name="styleSheet">
+             <string notr="true">border: 1px solid white</string>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QFrame" name="frame_4">
