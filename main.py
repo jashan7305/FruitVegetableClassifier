@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene,
     QDialog, QMessageBox, QLineEdit    
 )
+
+from Prediction import predict_image
 import resources
 
 app = QApplication([])
@@ -67,8 +69,8 @@ def capture_image():
         scene.setSceneRect(QRectF(pixmap.rect()))
         camera_view.fitInView(scene.sceneRect(), mode=1)
 
-        print(type(img))
-        return img
+        prediction = predict_image(img)
+        print(prediction)
 
 def upload():
     stop_camera()
@@ -84,10 +86,11 @@ def upload():
     scene.setSceneRect(QRectF(pixmap.rect()))
     camera_view.fitInView(scene.sceneRect(), mode=2)
 
-    print(type(img))
-    return img
+    prediction = predict_image(img)
+    print(prediction)
 
 def discard():
+    file_path_line.clear()
     scene.clear()
     start_camera()
 

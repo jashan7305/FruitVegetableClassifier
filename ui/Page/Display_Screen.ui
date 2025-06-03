@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>541</width>
-    <height>346</height>
+    <width>579</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,9 @@
   <property name="styleSheet">
    <string notr="true">QMainWindow{
 border-image: url(:/image/ui/Image/form_bg.png);
+}
+QPushButton{
+background-color: rgb(197, 240, 255);
 }
 
 </string>
@@ -56,6 +59,9 @@ border-image: url(:/image/ui/Image/form_bg.png);
               <pointsize>10</pointsize>
              </font>
             </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
             <property name="text">
              <string>Clear</string>
             </property>
@@ -73,6 +79,9 @@ border-image: url(:/image/ui/Image/form_bg.png);
              <font>
               <pointsize>10</pointsize>
              </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="text">
              <string>Capture</string>
@@ -131,6 +140,9 @@ border-image: url(:/image/ui/Image/form_bg.png);
              <font>
               <pointsize>10</pointsize>
              </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
             </property>
             <property name="text">
              <string>Select File</string>
@@ -276,7 +288,7 @@ border-image: url(:/image/ui/Image/form_bg.png);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>541</width>
+     <width>579</width>
      <height>18</height>
     </rect>
    </property>
