@@ -1,17 +1,15 @@
-from pathlib import Path
 import os
 import json
 import numpy as np
-from PIL import Image
 
 from keras import models
 from keras.applications.mobilenet_v2 import preprocess_input
 from keras.preprocessing.image import img_to_array
 
-model = models.load_model("models\\FruitClassification.h5")
+model = models.load_model(os.path.join("models","FruitClassification.h5"))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-with open("data\\index_to_label.json", "r") as f:
+with open(os.path.join("data","index_to_label.json"), "r") as f:
     index_to_label = json.load(f)
 
 def predict_image(img):
