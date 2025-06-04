@@ -1,6 +1,7 @@
 import os
 import json
 import numpy as np
+# from PIL import Image
 
 from keras import models
 from keras.applications.mobilenet_v2 import preprocess_input
