@@ -73,8 +73,12 @@
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(170, 255, 133);</string>
+         <string notr="true">background-color: green;
+color: white;</string>
         </property>
         <property name="text">
          <string>Yes</string>
@@ -96,8 +100,12 @@
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 111, 111);</string>
+         <string notr="true">background-color: red;
+color: white</string>
         </property>
         <property name="text">
          <string>No</string>
@@ -140,8 +148,13 @@
              <height>50</height>
             </size>
            </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">border-color: rgb(0, 0, 0);</string>
+            <string notr="true">border: 1px solid black;</string>
            </property>
           </widget>
          </item>

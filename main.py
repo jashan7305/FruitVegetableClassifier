@@ -79,8 +79,9 @@ def incorrect_prediction():
     combo_box.show()
     no_btn.setText("Confirm")
     no_btn.setStyleSheet("background-color: #74a5ff")
+    yes_btn.setText("Discard")
+    yes_btn.setStyleSheet("background-color: red")
     no_btn.clicked.disconnect()
-    yes_btn.disconnect()
     no_btn.clicked.connect(confirm_selection)
 
 def confirm_selection():
