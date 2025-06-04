@@ -8,8 +8,8 @@ from PyQt5 import uic
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtCore import QTimer, QRectF
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QPushButton, QWidget, QFileDialog, QGraphicsView, QGraphicsScene,
-    QDialog, QMessageBox, QLineEdit, QComboBox, QLabel, QDialogButtonBox    
+    QApplication, QMainWindow, QPushButton, QFileDialog, QGraphicsView, QGraphicsScene,
+    QDialog, QLineEdit, QComboBox, QLabel    
 )
 
 from Prediction import predict_image
@@ -17,8 +17,8 @@ import resources
 
 app = QApplication([])
 
-camera_window = cast(QMainWindow, uic.loadUi("ui\\Page\\Display_Screen.ui"))
-validation_dialog = cast(QDialog, uic.loadUi("ui\\Page\\Validate.ui"))
+camera_window = cast(QMainWindow, uic.loadUi(os.path.join("ui","Page","Display_Screen.ui")))
+validation_dialog = cast(QDialog, uic.loadUi(os.path.join("ui","Page","Validate.ui")))
 
 discard_btn = camera_window.findChild(QPushButton, "discardBtn")
 cap_btn = camera_window.findChild(QPushButton, "capBtn")
@@ -33,7 +33,7 @@ no_btn = validation_dialog.findChild(QPushButton, "noBtn")
 scene = QGraphicsScene()
 camera_view.setScene(scene)
 
-train_dir = "data\\train"
+train_dir = os.path.join("data","train")
 labels = [label for label in os.listdir(train_dir)]
 cap = cv2.VideoCapture(0)
 timer = QTimer()
@@ -68,7 +68,7 @@ def stop_camera():
 def show_prediction(prediction):
     validation_dialog.show()
     combo_box.hide()
-    prediction_label.setText(f"Prdiction: {prediction}\n\nIs this correct?")
+    prediction_label.setText(f"Prediction: {prediction}\n\nIs this correct?")
 
 def correct_prediction():
     validation_dialog.hide()
@@ -78,10 +78,13 @@ def incorrect_prediction():
     prediction_label.setText("\nPlease select the correct label")
     combo_box.show()
     no_btn.setText("Confirm")
-    no_btn.setStyleSheet("background-color: #74a5ff")
+    no_btn.setStyleSheet("background-color: blue; color: white")
     yes_btn.setText("Discard")
-    yes_btn.setStyleSheet("background-color: red")
-    no_btn.clicked.disconnect()
+    yes_btn.setStyleSheet("background-color: red; color: white")
+    try:
+        no_btn.clicked.disconnect()
+    except TypeError:
+        pass
     no_btn.clicked.connect(confirm_selection)
 
 def confirm_selection():
@@ -90,9 +93,9 @@ def confirm_selection():
     print(correct_label)
     if correct_label:
         validation_dialog.hide()
-        label_dir = train_dir + f"\\{correct_label}"
-        current_image.save(label_dir + f"\\{len(os.listdir(label_dir))+1}.jpg")
-        print(f"image saved as {label_dir + f'\\{len(os.listdir(label_dir))+1}.jpg'}")
+        label_dir = os.path.join(train_dir,correct_label)
+        current_image.save(os.path.join(label_dir, f"{len(os.listdir(label_dir))+1}.jpg"))
+        print(f"image saved as {os.path.join(label_dir, f'{len(os.listdir(label_dir))}.jpg')}")
     discard()
         
 def capture_image():
@@ -136,6 +139,21 @@ def upload():
     show_prediction(prediction)
 
 def discard():
+    yes_btn.setText("Yes")
+    yes_btn.setStyleSheet("background-color: green; color: white")
+    no_btn.setText("No")
+    no_btn.setStyleSheet("background-color: red; color: white")
+    try:
+        yes_btn.clicked.disconnect()
+    except TypeError:
+        pass
+    yes_btn.clicked.connect(correct_prediction)
+
+    try:
+        no_btn.clicked.disconnect()
+    except TypeError:
+        pass
+    no_btn.clicked.connect(incorrect_prediction)
     file_path_line.clear()
     scene.clear()
     global correct_label, current_image
