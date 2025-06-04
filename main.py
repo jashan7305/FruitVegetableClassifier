@@ -121,7 +121,7 @@ def capture_image():
 
 def upload():
     stop_camera()
-    file, _ = QFileDialog.getOpenFileName(camera_window, "Select Image", "", "Images (*.jpg *.jpeg *.png)")
+    file, _ = QFileDialog.getOpenFileName(camera_window, "Select Image", "", "Images (*.jpg *.jpeg *.png *.jfif)")
     if not file:
         return
     file_path_line.setText(file)
