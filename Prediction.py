@@ -3,9 +3,9 @@ import json
 import numpy as np
 # from PIL import Image
 
-model_name = "FruitClassification.h5"
+model_name = "FruitClassification.h5" # change this to change model
 
-with open(os.path.join("data","index_to_label.json"), "r") as f:
+with open(os.path.join("data", "index_to_label.json"), "r") as f:
     index_to_label = json.load(f)
 
 if model_name == "FruitClassification.h5":
@@ -14,7 +14,7 @@ if model_name == "FruitClassification.h5":
     from keras.applications.mobilenet_v2 import preprocess_input
     from keras.preprocessing.image import img_to_array
 
-    model = load_model(os.path.join("models",model_name))
+    model = load_model(os.path.join("models", model_name))
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
     def predict_image(img):

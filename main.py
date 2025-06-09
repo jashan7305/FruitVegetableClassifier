@@ -173,3 +173,4 @@ if __name__ == "__main__":
     exit_code = app.exec_()
     cap.release()
     sys.exit(exit_code)
+    
