@@ -45,6 +45,7 @@ combo_box.addItems(labels)
 def show_frame():
     ret, frame = cap.read()
     if ret:
+        frame = cv2.flip(frame, 1)
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         h, w, ch = frame_rgb.shape
         bytes_per_line = ch * w
