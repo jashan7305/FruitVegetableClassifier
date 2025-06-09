@@ -42,6 +42,3 @@ else:
 
 # trial_img = Image.open("train\\test\\apple\\Image_1.jpg")
 # predict_image(trial_img)
-
-
-
