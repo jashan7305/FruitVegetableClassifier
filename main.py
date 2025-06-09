@@ -118,7 +118,6 @@ def capture_image():
         prediction = predict_image(img)
         show_prediction(prediction)
         
-
 def upload():
     stop_camera()
     file, _ = QFileDialog.getOpenFileName(camera_window, "Select Image", "", "Images (*.jpg *.jpeg *.png *.jfif)")
