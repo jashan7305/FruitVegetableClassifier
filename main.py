@@ -17,8 +17,8 @@ import resources
 
 app = QApplication([])
 
-camera_window = cast(QMainWindow, uic.loadUi(os.path.join("ui","Page","Display_Screen.ui")))
-validation_dialog = cast(QDialog, uic.loadUi(os.path.join("ui","Page","Validate.ui")))
+camera_window = cast(QMainWindow, uic.loadUi(os.path.join("ui", "Page", "Display_Screen.ui")))
+validation_dialog = cast(QDialog, uic.loadUi(os.path.join("ui", "Page", "Validate.ui")))
 
 discard_btn = camera_window.findChild(QPushButton, "discardBtn")
 cap_btn = camera_window.findChild(QPushButton, "capBtn")
@@ -33,7 +33,7 @@ no_btn = validation_dialog.findChild(QPushButton, "noBtn")
 scene = QGraphicsScene()
 camera_view.setScene(scene)
 
-train_dir = os.path.join("data","train")
+train_dir = os.path.join("data", "train")
 labels = [label for label in os.listdir(train_dir)]
 cap = cv2.VideoCapture(0)
 timer = QTimer()
