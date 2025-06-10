@@ -27,14 +27,17 @@ file_path_line = camera_window.findChild(QLineEdit, "filePathLineEdit")
 camera_view = camera_window.findChild(QGraphicsView, "cameraView")
 combo_box = validation_dialog.findChild(QComboBox, "comboBox")
 prediction_label = validation_dialog.findChild(QLabel, "predLabel")
+other_option = validation_dialog.findChild(QLineEdit, "otherOption")
 yes_btn = validation_dialog.findChild(QPushButton, "yesBtn")
 no_btn = validation_dialog.findChild(QPushButton, "noBtn")
+save_btn = validation_dialog.findChild(QPushButton, "saveBtn")
 
 scene = QGraphicsScene()
 camera_view.setScene(scene)
 
 train_dir = os.path.join("data", "train")
 labels = [label for label in os.listdir(train_dir)]
+labels.append("other")
 cap = cv2.VideoCapture(0)
 timer = QTimer()
 correct_label = None
@@ -69,6 +72,8 @@ def stop_camera():
 def show_prediction(prediction):
     validation_dialog.show()
     combo_box.hide()
+    other_option.hide()
+    save_btn.hide()
     prediction_label.setText(f"Prediction: {prediction}\n\nIs this correct?")
 
 def correct_prediction():
@@ -93,8 +98,25 @@ def confirm_selection():
     correct_label = combo_box.currentText()
     print(correct_label)
     if correct_label:
-        validation_dialog.hide()
-        label_dir = os.path.join(train_dir,correct_label)
+        if correct_label == "other":
+            other_option.show()
+            save_btn.show()
+            save_btn.clicked.connect(save_other_label)
+        else:
+            label_dir = os.path.join(train_dir, correct_label)
+            if not os.path.exists(label_dir):
+                os.makedirs(label_dir)
+            current_image.save(os.path.join(label_dir, f"{len(os.listdir(label_dir))+1}.jpg"))
+            print(f"image saved as {os.path.join(label_dir, f'{len(os.listdir(label_dir))}.jpg')}")
+            discard()
+
+def save_other_label():
+    global correct_label, current_image
+    correct_label = other_option.text()
+    if correct_label:
+        label_dir = os.path.join(train_dir, correct_label)
+        if not os.path.exists(label_dir):
+            os.makedirs(label_dir)
         current_image.save(os.path.join(label_dir, f"{len(os.listdir(label_dir))+1}.jpg"))
         print(f"image saved as {os.path.join(label_dir, f'{len(os.listdir(label_dir))}.jpg')}")
     discard()
@@ -143,6 +165,9 @@ def discard():
     yes_btn.setStyleSheet("background-color: green; color: white")
     no_btn.setText("No")
     no_btn.setStyleSheet("background-color: red; color: white")
+    other_option.clear()
+    other_option.hide()
+    save_btn.hide()
     try:
         yes_btn.clicked.disconnect()
     except TypeError:
@@ -154,6 +179,7 @@ def discard():
     except TypeError:
         pass
     no_btn.clicked.connect(incorrect_prediction)
+    validation_dialog.hide()
     file_path_line.clear()
     scene.clear()
     global correct_label, current_image
